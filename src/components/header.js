@@ -63,11 +63,12 @@ export default function Header() {
   const [isOpen, setOpen] = React.useState(false)
 
   React.useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflowY = "hidden"
-    } else {
-      document.body.style.overflowY = "visible"
-    }
+    // if (isOpen) {
+    //   document.body.style.overflowY = "hidden"
+    // } else {
+    //   document.body.style.overflowY = "visible"
+    // }
+    console.log('React document mention header.js');
   }, [isOpen])
 
   return (

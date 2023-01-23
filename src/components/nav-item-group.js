@@ -9,7 +9,9 @@ export default function NavItemGroup({ name, navItems }) {
   const [isOpen, setIsOpen] = React.useState(false)
   const [popupVisible, setPopupVisible] = React.useState(false)
   const isSmallScreen = () => {
-    return !window.matchMedia(media.small).matches
+    console.log('Window mention');
+    // return !window.matchMedia(media.small).matches
+    return false;
   }
   const onGroupButtonClick = React.useCallback(() => {
     if (!isOpen) {
@@ -25,41 +27,43 @@ export default function NavItemGroup({ name, navItems }) {
   }, [isOpen])
 
   React.useEffect(() => {
-    // crude implementation of animating the popup without a library
-    const popupBox = document.querySelector(`[data-id="${name}-popup-box"]`)
-    const onAnimationEnd = ({ animationName }) => {
-      if (animationName === `zoomOutDown`) {
-        setIsOpen(false)
-      }
-    }
-    if (popupBox) {
-      popupBox.addEventListener("animationend", onAnimationEnd)
-      return () => {
-        popupBox.removeEventListener("animationend", onAnimationEnd)
-      }
-    }
+    // // crude implementation of animating the popup without a library
+    // const popupBox = document.querySelector(`[data-id="${name}-popup-box"]`)
+    // const onAnimationEnd = ({ animationName }) => {
+    //   if (animationName === `zoomOutDown`) {
+    //     setIsOpen(false)
+    //   }
+    // }
+    // if (popupBox) {
+    //   popupBox.addEventListener("animationend", onAnimationEnd)
+    //   return () => {
+    //     popupBox.removeEventListener("animationend", onAnimationEnd)
+    //   }
+    // }
+    console.log('React document mention nav-item.js');
   }, [isOpen, name])
 
   React.useEffect(() => {
-    // hide menu when clicked outside
-    const handleClickOutside = (event) => {
-      const wrapper = document.querySelector(
-        `[data-id="${name}-group-wrapper"]`
-      )
-      if (
-        !isSmallScreen() &&
-        isOpen &&
-        wrapper &&
-        !wrapper.contains(event.target)
-      ) {
-        onGroupButtonClick()
-      }
-    }
+    // // hide menu when clicked outside
+    // const handleClickOutside = (event) => {
+    //   const wrapper = document.querySelector(
+    //     `[data-id="${name}-group-wrapper"]`
+    //   )
+    //   if (
+    //     !isSmallScreen() &&
+    //     isOpen &&
+    //     wrapper &&
+    //     !wrapper.contains(event.target)
+    //   ) {
+    //     onGroupButtonClick()
+    //   }
+    // }
 
-    document.addEventListener("mousedown", handleClickOutside)
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside)
-    }
+    // document.addEventListener("mousedown", handleClickOutside)
+    // return () => {
+    //   document.removeEventListener("mousedown", handleClickOutside)
+    // }
+    console.log('React document mention nav-item 2');
   }, [name, isOpen, onGroupButtonClick])
 
   return (
